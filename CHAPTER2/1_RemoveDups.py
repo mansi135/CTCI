@@ -41,7 +41,27 @@ def remove_duplicates_method2(a):
     return a
 
 
-#def remove_duplicates_followup(a):
+def remove_duplicates_followup(a):
+
+    if a.head == None:  # Empty LL
+        return
+
+
+    # Think of it like nested for loop O(n^2)
+    # As soon as we find a number equal to current outer for loop, remove it
+    ptr1 = a.head
+    while ptr1.next != None:
+        ptr2 = ptr1
+        while ptr2.next != None:
+            if ptr2.next.data == ptr1.data:
+                ptr2.next = ptr2.next.next
+            else:
+                ptr2 = ptr2.next
+        ptr1 = ptr1.next
+
+    return a
+
+
 
 
 
@@ -51,18 +71,19 @@ def main():
 
     a.add_to_tail(6)
     a.add_to_tail(1)
-    a.add_to_tail(2)
-    a.add_to_tail(3)
     a.add_to_tail(1)
     a.add_to_tail(2)
     a.add_to_tail(3)
     a.add_to_tail(4)
     a.add_to_tail(4)
     a.add_to_tail(5)
-
+    a.add_to_tail(2)
+    a.add_to_tail(3)
     remove_duplicates(a).print()
     print("\n")
     remove_duplicates_method2(a).print()
+    print("\n")
+    remove_duplicates_followup(a).print()
 
 
 if __name__ == '__main__':
