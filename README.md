@@ -1,2 +1,2 @@
 # CTCI
-My Solutions to CTCI Fifth Edition in Python . 
+My Solutions to CTCI sixth Edition in Python . 
