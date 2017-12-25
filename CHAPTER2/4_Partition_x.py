@@ -21,9 +21,25 @@ def partition(ll, x):
     return new_ll
 
 
+# In this method, I will refactor the above method to zero-out the original list, so that we don't have two lists
+def partition_method2(ll, x):
+
+    new_ll = SinglyLinkedList()
+
+    node = ll.remove_node_from_head()
+    while node:
+        if node.data < x:
+            new_ll.add_node_to_head(node)
+        else:
+            new_ll.add_node_to_tail(node)
+        node = ll.remove_node_from_head()
+
+    return new_ll
+
+
 
 # In this method, i make 3 separate LL for smaller, equal and bigger and then concatenate and return
-def partition_method2(ll, x):
+def partition_method3(ll, x):
 
     equal = SinglyLinkedList()
     smaller = SinglyLinkedList()
@@ -72,7 +88,10 @@ def main():
     a = partition(a, 5)
     a.print()
 
-    a = partition_method2(a, 8)
+    a = partition_method2(a, 5)
+    a.print()
+
+    a = partition_method3(a, 8)
     a.print()
 
 
