@@ -1,11 +1,11 @@
 # Partition linked-list around x .
-# I make a new linked list , which has add-to-head and add-to-tail methods .
-# If num is < x, I add to head, else I add to tail
-# then return new_ll
 
 from CHAPTER2.MyLinkedList import *
 
 
+# I make a new linked list , which has add-to-head and add-to-tail methods .
+# If num is < x, I add to head, else I add to tail
+# then return new_ll
 def partition(ll, x):
 
     new_ll = SinglyLinkedList()
@@ -19,6 +19,42 @@ def partition(ll, x):
         node = node.next
 
     return new_ll
+
+
+
+# In this method, i make 3 separate LL for smaller, equal and bigger and then concatenate and return
+def partition_method2(ll, x):
+
+    equal = SinglyLinkedList()
+    smaller = SinglyLinkedList()
+    bigger = SinglyLinkedList()
+
+    start = ll.head
+
+    while start is not None:
+        if start.data == x:
+            equal.add_to_tail(x)
+        elif start.data < x:
+            smaller.add_to_tail(start.data)
+        else:
+            bigger.add_to_tail(start.data)
+        start = start.next
+
+    if smaller.tail:
+        smaller.tail.next = equal.head
+
+    if equal.tail:
+        equal.tail.next = bigger.head
+
+    if smaller.head:
+        return smaller
+
+    if equal.head:
+        return equal
+
+    if bigger.head:
+        return bigger
+
 
 
 def main():
@@ -36,6 +72,8 @@ def main():
     a = partition(a, 5)
     a.print()
 
+    a = partition_method2(a, 8)
+    a.print()
 
 
 
