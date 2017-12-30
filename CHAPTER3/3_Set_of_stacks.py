@@ -14,7 +14,8 @@ class Stack:
         return len(self.stack) == 0
 
     def is_full(self):
-        return len(self.stack) == self.capacity
+        if self.capacity > 0:       # Convert bounded stack to unbounded if capacity is not given
+            return len(self.stack) == self.capacity
 
     def peek(self):
         if self.is_empty():
@@ -25,6 +26,9 @@ class Stack:
         if self.is_empty():
             raise Exception('Empty Stack')
         return self.stack.pop()
+
+    def __str__(self):
+        return str(self.stack)
 
 
 class SetOfStacks:
@@ -86,7 +90,7 @@ def main():
     s.pop()
     print(s.peek())
     s.pop()
-    print(s.peek())
+   # print(s.peek())
 
 
 if __name__ == "__main__":
