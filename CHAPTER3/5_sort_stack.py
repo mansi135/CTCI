@@ -9,24 +9,18 @@ def sort(stack):
 
     temp_stack = mystack.Stack(-1)
 
-
     while not stack.is_empty():
-        minstack = stack.pop()
-        if temp_stack.is_empty() or temp_stack.peek() < minstack:
-            temp_stack.push(minstack)
+        current_min = stack.pop()
+        if temp_stack.is_empty() or temp_stack.peek() < current_min:
+            temp_stack.push(current_min)
         else:
-            while temp_stack.peek() > minstack:
+            while not temp_stack.is_empty() and temp_stack.peek() > current_min:
                 stack.push(temp_stack.pop())
-                if temp_stack.is_empty():
-                    break
-            temp_stack.push(minstack)
-
-    print(temp_stack)
+            temp_stack.push(current_min)
 
     # transfer temp_stack back to original stack
     while not temp_stack.is_empty():
         stack.push(temp_stack.pop())
-
 
     return stack
 
@@ -48,36 +42,7 @@ def main():
 
 
 
-
 if __name__ == '__main__':
     main()
 
 
-
-
-
-# A more verbose algorithm
-
-# def sort(stack):
-#
-#     temp_stack = mystack.Stack(-1)
-#
-#
-#     while not stack.is_empty():
-#         minstack = stack.pop()
-#         if temp_stack.is_empty():
-#             temp_stack.push(minstack)
-#         else:
-#             peek_temp = temp_stack.peek()
-#             if peek_temp < minstack:
-#                 temp_stack.push(minstack)
-#             else:
-#                 while peek_temp > minstack:
-#                     stack.push(temp_stack.pop())
-#                     if not temp_stack.is_empty():
-#                         peek_temp = temp_stack.peek()
-#                     else:
-#                         break
-#                 temp_stack.push(minstack)
-#
-#     print(temp_stack)
